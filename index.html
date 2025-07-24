@@ -6,11 +6,9 @@
   <title>Air Duct Cleaning and Indoor Air Quality Solutions</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    /* Ensure modals and payment forms are hidden by default */
-    .modal { display: none; }
-    .payment-form { display: none; }
-    .modal.active { display: flex; }
-    .payment-form.active { display: block; }
+    /* Modal and payment form styles */
+    .modal { display: none; position: fixed; inset: 0; background-color: rgba(0, 0, 0, 0.5); justify-content: center; align-items: center; z-index: 50; }
+    #payment-form { display: none; }
   </style>
 </head>
 <body>
@@ -21,6 +19,7 @@
       <a href="#about" class="hover:text-gray-200">About</a>
       <a href="#services" class="hover:text-gray-200">Services</a>
       <a href="#store" class="hover:text-gray-200">Store</a>
+      <a href="#payment" class="hover:text-gray-200">Payment</a>
       <a href="#reviews" class="hover:text-gray-200">Reviews</a>
       <a href="#contact" class="hover:text-gray-200">Contact</a>
     </nav>
@@ -85,109 +84,61 @@
             <h3 class="text-lg font-semibold">Air Purifier</h3>
             <p class="text-gray-600">$99.99</p>
             <p class="text-sm text-gray-500 mb-4">This high-efficiency air purifier features a HEPA filter to capture 99.97% of airborne particles, including dust, pollen, and pet dander. Ideal for homes up to 500 sq ft, it ensures cleaner air and a healthier living environment.</p>
-            <button onclick="togglePayment('payment-1')" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-500">Add to Cart</button>
-            <div id="payment-1" class="payment-form mt-4 p-4 border rounded">
-              <h4 class="text-lg font-semibold mb-2">Payment Information</h4>
-              <input type="text" placeholder="Card Number" class="w-full p-2 mb-2 border rounded">
-              <input type="text" placeholder="Cardholder Name" class="w-full p-2 mb-2 border rounded">
-              <div class="flex space-x-2">
-                <input type="text" placeholder="MM/YY" class="w-1/2 p-2 mb-2 border rounded">
-                <input type="text" placeholder="CVC" class="w-1/2 p-2 mb-2 border rounded">
-              </div>
-              <button class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-500">Submit Payment</button>
-              <button onclick="togglePayment('payment-1')" class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-500 mt-2">Cancel</button>
-            </div>
+            <button onclick="showPayment()" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-500">Add to Cart</button>
           </div>
           <div class="border p-4 rounded-lg text-center">
             <img src="https://via.placeholder.com/300x200?text=HEPA+Filter" alt="HEPA Filter" class="w-full h-48 object-cover rounded mb-4">
             <h3 class="text-lg font-semibold">HEPA Filter</h3>
             <p class="text-gray-600">$29.99</p>
             <p class="text-sm text-gray-500 mb-4">Our replacement HEPA filter is designed for compatibility with most standard air purifiers. It traps fine particles and allergens, ensuring your purifier continues to deliver clean air for up to 6 months.</p>
-            <button onclick="togglePayment('payment-2')" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-500">Add to Cart</button>
-            <div id="payment-2" class="payment-form mt-4 p-4 border rounded">
-              <h4 class="text-lg font-semibold mb-2">Payment Information</h4>
-              <input type="text" placeholder="Card Number" class="w-full p-2 mb-2 border rounded">
-              <input type="text" placeholder="Cardholder Name" class="w-full p-2 mb-2 border rounded">
-              <div class="flex space-x-2">
-                <input type="text" placeholder="MM/YY" class="w-1/2 p-2 mb-2 border rounded">
-                <input type="text" placeholder="CVC" class="w-1/2 p-2 mb-2 border rounded">
-              </div>
-              <button class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-500">Submit Payment</button>
-              <button onclick="togglePayment('payment-2')" class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-500 mt-2">Cancel</button>
-            </div>
+            <button onclick="showPayment()" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-500">Add to Cart</button>
           </div>
           <div class="border p-4 rounded-lg text-center">
             <img src="https://via.placeholder.com/300x200?text=Vent+Cleaning+Kit" alt="Vent Cleaning Kit" class="w-full h-48 object-cover rounded mb-4">
             <h3 class="text-lg font-semibold">Vent Cleaning Kit</h3>
             <p class="text-gray-600">$49.99</p>
             <p class="text-sm text-gray-500 mb-4">This DIY vent cleaning kit includes brushes, rods, and a vacuum attachment for easy at-home maintenance of your air ducts. Keep your vents free of dust and debris to maintain optimal air quality.</p>
-            <button onclick="togglePayment('payment-3')" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-500">Add to Cart</button>
-            <div id="payment-3" class="payment-form mt-4 p-4 border rounded">
-              <h4 class="text-lg font-semibold mb-2">Payment Information</h4>
-              <input type="text" placeholder="Card Number" class="w-full p-2 mb-2 border rounded">
-              <input type="text" placeholder="Cardholder Name" class="w-full p-2 mb-2 border rounded">
-              <div class="flex space-x-2">
-                <input type="text" placeholder="MM/YY" class="w-1/2 p-2 mb-2 border rounded">
-                <input type="text" placeholder="CVC" class="w-1/2 p-2 mb-2 border rounded">
-              </div>
-              <button class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-500">Submit Payment</button>
-              <button onclick="togglePayment('payment-3')" class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-500 mt-2">Cancel</button>
-            </div>
+            <button onclick="showPayment()" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-500">Add to Cart</button>
           </div>
           <div class="border p-4 rounded-lg text-center">
             <img src="https://via.placeholder.com/300x200?text=UV+Air+Sanitizer" alt="UV Air Sanitizer" class="w-full h-48 object-cover rounded mb-4">
             <h3 class="text-lg font-semibold">UV Air Sanitizer</h3>
             <p class="text-gray-600">$149.99</p>
             <p class="text-sm text-gray-500 mb-4">This UV air sanitizer uses ultraviolet light to eliminate bacteria, viruses, and mold spores in your HVAC system. Easy to install, it provides an extra layer of protection for your indoor air quality.</p>
-            <button onclick="togglePayment('payment-4')" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-500">Add to Cart</button>
-            <div id="payment-4" class="payment-form mt-4 p-4 border rounded">
-              <h4 class="text-lg font-semibold mb-2">Payment Information</h4>
-              <input type="text" placeholder="Card Number" class="w-full p-2 mb-2 border rounded">
-              <input type="text" placeholder="Cardholder Name" class="w-full p-2 mb-2 border rounded">
-              <div class="flex space-x-2">
-                <input type="text" placeholder="MM/YY" class="w-1/2 p-2 mb-2 border rounded">
-                <input type="text" placeholder="CVC" class="w-1/2 p-2 mb-2 border rounded">
-              </div>
-              <button class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-500">Submit Payment</button>
-              <button onclick="togglePayment('payment-4')" class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-500 mt-2">Cancel</button>
-            </div>
+            <button onclick="showPayment()" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-500">Add to Cart</button>
           </div>
           <div class="border p-4 rounded-lg text-center">
             <img src="https://via.placeholder.com/300x200?text=Dehumidifier" alt="Dehumidifier" class="w-full h-48 object-cover rounded mb-4">
             <h3 class="text-lg font-semibold">Dehumidifier</h3>
             <p class="text-gray-600">$79.99</p>
             <p class="text-sm text-gray-500 mb-4">Our compact dehumidifier removes excess moisture from the air, preventing mold growth and improving comfort. Perfect for basements or humid climates, it covers up to 300 sq ft.</p>
-            <button onclick="togglePayment('payment-5')" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-500">Add to Cart</button>
-            <div id="payment-5" class="payment-form mt-4 p-4 border rounded">
-              <h4 class="text-lg font-semibold mb-2">Payment Information</h4>
-              <input type="text" placeholder="Card Number" class="w-full p-2 mb-2 border rounded">
-              <input type="text" placeholder="Cardholder Name" class="w-full p-2 mb-2 border rounded">
-              <div class="flex space-x-2">
-                <input type="text" placeholder="MM/YY" class="w-1/2 p-2 mb-2 border rounded">
-                <input type="text" placeholder="CVC" class="w-1/2 p-2 mb-2 border rounded">
-              </div>
-              <button class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-500">Submit Payment</button>
-              <button onclick="togglePayment('payment-5')" class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-500 mt-2">Cancel</button>
-            </div>
+            <button onclick="showPayment()" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-500">Add to Cart</button>
           </div>
           <div class="border p-4 rounded-lg text-center">
             <img src="https://via.placeholder.com/300x200?text=Air+Quality+Monitor" alt="Air Quality Monitor" class="w-full h-48 object-cover rounded mb-4">
             <h3 class="text-lg font-semibold">Air Quality Monitor</h3>
             <p class="text-gray-600">$59.99</p>
             <p class="text-sm text-gray-500 mb-4">Monitor your indoor air quality with this easy-to-use device. It measures levels of dust, VOCs, and humidity, providing real-time data to help you maintain a healthy home environment.</p>
-            <button onclick="togglePayment('payment-6')" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-500">Add to Cart</button>
-            <div id="payment-6" class="payment-form mt-4 p-4 border rounded">
-              <h4 class="text-lg font-semibold mb-2">Payment Information</h4>
-              <input type="text" placeholder="Card Number" class="w-full p-2 mb-2 border rounded">
-              <input type="text" placeholder="Cardholder Name" class="w-full p-2 mb-2 border rounded">
-              <div class="flex space-x-2">
-                <input type="text" placeholder="MM/YY" class="w-1/2 p-2 mb-2 border rounded">
-                <input type="text" placeholder="CVC" class="w-1/2 p-2 mb-2 border rounded">
-              </div>
-              <button class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-500">Submit Payment</button>
-              <button onclick="togglePayment('payment-6')" class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-500 mt-2">Cancel</button>
-            </div>
+            <button onclick="showPayment()" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-500">Add to Cart</button>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Payment Section -->
+    <section id="payment" class="py-16 bg-gray-100">
+      <div class="container mx-auto px-6">
+        <h2 class="text-3xl font-bold text-center mb-8">Complete Your Purchase</h2>
+        <div id="payment-form" class="max-w-lg mx-auto p-4 border rounded">
+          <h4 class="text-lg font-semibold mb-2">Payment Information</h4>
+          <input type="text" placeholder="Card Number" class="w-full p-2 mb-2 border rounded">
+          <input type="text" placeholder="Cardholder Name" class="w-full p-2 mb-2 border rounded">
+          <div class="flex space-x-2">
+            <input type="text" placeholder="MM/YY" class="w-1/2 p-2 mb-2 border rounded">
+            <input type="text" placeholder="CVC" class="w-1/2 p-2 mb-2 border rounded">
+          </div>
+          <button class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-500 w-full">Submit Payment</button>
+          <button id="payment-cancel-btn" class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-500 w-full mt-2">Cancel</button>
         </div>
       </div>
     </section>
@@ -239,61 +190,109 @@
   <footer class="bg-gray-800 text-white py-6">
     <div class="container mx-auto px-6 text-center">
       <div class="space-x-4">
-        <button onclick="toggleModal('privacy-modal')" class="hover:text-gray-200">Privacy Policy</button>
-        <button onclick="toggleModal('return-modal')" class="hover:text-gray-200">Return Policy</button>
-        <button onclick="toggleModal('terms-modal')" class="hover:text-gray-200">Terms and Conditions</button>
+        <button id="privacy-btn" class="hover:text-gray-200">Privacy Policy</button>
+        <button id="return-btn" class="hover:text-gray-200">Return Policy</button>
+        <button id="terms-btn" class="hover:text-gray-200">Terms and Conditions</button>
       </div>
     </div>
   </footer>
 
   <!-- Policy Modals -->
-  <div id="privacy-modal" class="modal fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+  <div id="privacy-modal" class="modal">
     <div class="bg-white p-6 rounded-lg max-w-lg w-full">
       <div class="flex justify-between items-center mb-4">
         <h2 class="text-xl font-bold">Privacy Policy</h2>
-        <button onclick="toggleModal('privacy-modal')" class="text-2xl">×</button>
+        <button id="privacy-close-btn" class="text-2xl">×</button>
       </div>
       <p class="text-gray-600">Your privacy is important to us. We collect personal information such as your name, email, and address only to process orders and provide services. We do not share your data with third parties without your consent, except as required by law. Our website uses secure encryption to protect your information.</p>
     </div>
   </div>
-  <div id="return-modal" class="modal fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+  <div id="return-modal" class="modal">
     <div class="bg-white p-6 rounded-lg max-w-lg w-full">
       <div class="flex justify-between items-center mb-4">
         <h2 class="text-xl font-bold">Return Policy</h2>
-        <button onclick="toggleModal('return-modal')" class="text-2xl">×</button>
+        <button id="return-close-btn" class="text-2xl">×</button>
       </div>
       <p class="text-gray-600">We offer a 30-day return policy for unused products in their original packaging. To initiate a return, contact us at +1-213-876-3486. Returned items must be in new condition, and customers are responsible for return shipping costs unless the item is defective.</p>
     </div>
   </div>
-  <div id="terms-modal" class="modal fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+  <div id="terms-modal" class="modal">
     <div class="bg-white p-6 rounded-lg max-w-lg w-full">
       <div class="flex justify-between items-center mb-4">
         <h2 class="text-xl font-bold">Terms and Conditions</h2>
-        <button onclick="toggleModal('terms-modal')" class="text-2xl">×</button>
+        <button id="terms-close-btn" class="text-2xl">×</button>
       </div>
       <p class="text-gray-600">By using our services or purchasing products, you agree to our terms. Services are provided as-is, and we are not liable for damages arising from their use. All purchases are final except as outlined in our return policy. We reserve the right to update these terms at any time.</p>
     </div>
   </div>
 
   <script>
-    // Toggle payment form visibility
-    function togglePayment(id) {
-      const paymentForm = document.getElementById(id);
-      const isActive = paymentForm.classList.contains('active');
-      console.log('Toggling payment form:', id, 'Current state:', isActive);
-      paymentForm.classList.toggle('active');
-      // Update button text
-      const button = paymentForm.previousElementSibling;
-      button.textContent = isActive ? 'Add to Cart' : 'Cancel';
+    // Show payment form and scroll to it
+    function showPayment() {
+      const paymentForm = document.getElementById('payment-form');
+      console.log('Showing payment form');
+      paymentForm.style.display = 'block';
+      document.getElementById('payment').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // Hide payment form
+    function hidePayment() {
+      const paymentForm = document.getElementById('payment-form');
+      console.log('Hiding payment form');
+      paymentForm.style.display = 'none';
     }
 
     // Toggle modal visibility
     function toggleModal(id) {
       const modal = document.getElementById(id);
-      const isActive = modal.classList.contains('active');
-      console.log('Toggling modal:', id, 'Current state:', isActive);
-      modal.classList.toggle('active');
+      const isVisible = modal.style.display === 'flex';
+      console.log('Toggling modal:', id, 'Visible:', isVisible);
+      modal.style.display = isVisible ? 'none' : 'flex';
     }
+
+    // Initialize modals and attach event listeners
+    document.addEventListener('DOMContentLoaded', () => {
+      console.log('Page loaded, initializing modals and buttons');
+      // Hide all modals and payment form on load
+      document.querySelectorAll('.modal').forEach(modal => {
+        modal.style.display = 'none';
+      });
+      document.getElementById('payment-form').style.display = 'none';
+
+      // Attach event listeners to footer buttons
+      document.getElementById('privacy-btn').addEventListener('click', () => {
+        console.log('Privacy Policy button clicked');
+        toggleModal('privacy-modal');
+      });
+      document.getElementById('return-btn').addEventListener('click', () => {
+        console.log('Return Policy button clicked');
+        toggleModal('return-modal');
+      });
+      document.getElementById('terms-btn').addEventListener('click', () => {
+        console.log('Terms and Conditions button clicked');
+        toggleModal('terms-modal');
+      });
+
+      // Attach event listeners to close buttons
+      document.getElementById('privacy-close-btn').addEventListener('click', () => {
+        console.log('Privacy Policy close button clicked');
+        toggleModal('privacy-modal');
+      });
+      document.getElementById('return-close-btn').addEventListener('click', () => {
+        console.log('Return Policy close button clicked');
+        toggleModal('return-modal');
+      });
+      document.getElementById('terms-close-btn').addEventListener('click', () => {
+        console.log('Terms and Conditions close button clicked');
+        toggleModal('terms-modal');
+      });
+
+      // Attach event listener to payment cancel button
+      document.getElementById('payment-cancel-btn').addEventListener('click', () => {
+        console.log('Payment cancel button clicked');
+        hidePayment();
+      });
+    });
   </script>
 </body>
 </html>
