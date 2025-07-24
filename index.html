@@ -4,148 +4,275 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Air Duct Cleaning and Indoor Air Quality Solutions</title>
+  <script src="https://cdn.jsdelivr.net/npm/react@18/umd/react.development.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/babel-standalone@7/babel.min.js"></script>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
-  <!-- Header -->
-  <header class="bg-blue-600 text-white py-4 px-6 flex justify-between items-center sticky top-0">
-    <a href="#home" class="text-2xl font-bold">Air Duct Cleaning</a>
-    <nav class="hidden md:flex space-x-6">
-      <a href="#about" class="hover:text-gray-200">About</a>
-      <a href="#services" class="hover:text-gray-200">Services</a>
-      <a href="#store" class="hover:text-gray-200">Store</a>
-      <a href="#reviews" class="hover:text-gray-200">Reviews</a>
-      <a href="#contact" class="hover:text-gray-200">Contact</a>
-    </nav>
-    <a href="#contact" class="bg-yellow-500 text-black px-4 py-2 rounded hover:bg-yellow-400">Book Now</a>
-  </header>
+  <div id="root"></div>
+  <script type="text/babel">
+    const { useState } = React;
 
-  <!-- Home Section -->
-  <section id="home" class="min-h-screen bg-gray-100 flex items-center">
-    <div class="container mx-auto px-6 flex flex-col md:flex-row items-center">
-      <div class="md:w-1/2">
-        <h1 class="text-4xl font-bold mb-4">Air Duct Cleaning and Indoor Air Quality Solutions</h1>
-        <p class="text-xl text-gray-600 mb-6">Breathe Fresh, Live Healthy!</p>
-      </div>
-      <div class="md:w-1/2">
-        <img src="https://via.placeholder.com/500x300?text=Air+Duct+Cleaning" alt="Air Duct Cleaning" class="w-full rounded">
-      </div>
-    </div>
-  </section>
+    // Header Component
+    function Header() {
+      return (
+        <header className="bg-blue-600 text-white py-4 px-6 flex justify-between items-center sticky top-0 z-50">
+          <a href="#home" className="text-2xl font-bold">Air Duct Cleaning</a>
+          <nav className="hidden md:flex space-x-6">
+            <a href="#about" className="hover:text-gray-200">About</a>
+            <a href="#services" className="hover:text-gray-200">Services</a>
+            <a href="#store" className="hover:text-gray-200">Store</a>
+            <a href="#reviews" className="hover:text-gray-200">Reviews</a>
+            <a href="#contact" className="hover:text-gray-200">Contact</a>
+          </nav>
+          <a href="#contact" className="bg-yellow-500 text-black px-4 py-2 rounded hover:bg-yellow-400">Book Now</a>
+        </header>
+      );
+    }
 
-  <!-- About Section -->
-  <section id="about" class="py-16">
-    <div class="container mx-auto px-6">
-      <h2 class="text-3xl font-bold text-center mb-8">About Us</h2>
-      <p class="text-lg text-gray-600 text-center">
-        We have proudly served over <span class="font-semibold">1,000 customers</span> in the past <span class="font-semibold">3 years</span>, providing top-notch air duct cleaning and indoor air quality solutions.
-      </p>
-    </div>
-  </section>
+    // Modal Component for Policies
+    function Modal({ isOpen, onClose, title, children }) {
+      if (!isOpen) return null;
+      return (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white p-6 rounded-lg max-w-lg w-full">
+            <div className="flex justify-between items-center mb-4">
+              <h2 className="text-xl font-bold">{title}</h2>
+              <button onClick={() => { console.log('Closing modal:', title); onClose(); }} className="text-2xl">×</button>
+            </div>
+            <div>{children}</div>
+          </div>
+        </div>
+      );
+    }
 
-  <!-- Services Section -->
-  <section id="services" class="py-16 bg-gray-100">
-    <div class="container mx-auto px-6">
-      <h2 class="text-3xl font-bold text-center mb-8">Our Services</h2>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <div class="text-center">
-          <img src="https://via.placeholder.com/300x200?text=Air+Duct+Cleaning" alt="Air Duct Cleaning" class="w-full h-48 object-cover rounded mb-4">
-          <h3 class="text-xl font-semibold">Air Duct Cleaning</h3>
-          <p class="text-gray-600">Remove dust, debris, and allergens from your air ducts.</p>
-        </div>
-        <div class="text-center">
-          <img src="https://via.placeholder.com/300x200?text=HVAC+Maintenance" alt="HVAC Maintenance" class="w-full h-48 object-cover rounded mb-4">
-          <h3 class="text-xl font-semibold">HVAC Maintenance</h3>
-          <p class="text-gray-600">Keep your HVAC system running efficiently.</p>
-        </div>
-        <div class="text-center">
-          <img src="https://via.placeholder.com/300x200?text=Air+Quality+Testing" alt="Air Quality Testing" class="w-full h-48 object-cover rounded mb-4">
-          <h3 class="text-xl font-semibold">Air Quality Testing</h3>
-          <p class="text-gray-600">Assess and improve your indoor air quality.</p>
-        </div>
-      </div>
-    </div>
-  </section>
+    // Store Item Component
+    function StoreItem({ name, price, description, image }) {
+      const [showPayment, setShowPayment] = useState(false);
 
-  <!-- Store Section -->
-  <section id="store" class="py-16">
-    <div class="container mx-auto px-6">
-      <h2 class="text-3xl font-bold text-center mb-8">Our Store</h2>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <div class="border p-4 rounded-lg text-center">
-          <img src="https://via.placeholder.com/300x200?text=Air+Purifier" alt="Air Purifier" class="w-full h-48 object-cover rounded mb-4">
-          <h3 class="text-lg font-semibold">Air Purifier</h3>
-          <p class="text-gray-600">$99.99</p>
-          <p class="text-sm text-gray-500 mb-4">High-efficiency air purifier.</p>
-          <button class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-500">Add to Cart</button>
-        </div>
-        <div class="border p-4 rounded-lg text-center">
-          <img src="https://via.placeholder.com/300x200?text=HEPA+Filter" alt="HEPA Filter" class="w-full h-48 object-cover rounded mb-4">
-          <h3 class="text-lg font-semibold">HEPA Filter</h3>
-          <p class="text-gray-600">$29.99</p>
-          <p class="text-sm text-gray-500 mb-4">Replacement HEPA filter.</p>
-          <button class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-500">Add to Cart</button>
-        </div>
-        <div class="border p-4 rounded-lg text-center">
-          <img src="https://via.placeholder.com/300x200?text=Vent+Cleaning+Kit" alt="Vent Cleaning Kit" class="w-full h-48 object-cover rounded mb-4">
-          <h3 class="text-lg font-semibold">Vent Cleaning Kit</h3>
-          <p class="text-gray-600">$49.99</p>
-          <p class="text-sm text-gray-500 mb-4">DIY vent cleaning kit.</p>
-          <button class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-500">Add to Cart</button>
-        </div>
-      </div>
-    </div>
-  </section>
+      const togglePayment = () => {
+        console.log('Toggling payment form for:', name, 'Current state:', showPayment);
+        setShowPayment(!showPayment);
+      };
 
-  <!-- Reviews Section -->
-  <section id="reviews" class="py-16 bg-gray-100">
-    <div class="container mx-auto px-6">
-      <h2 class="text-3xl font-bold text-center mb-8">Customer Reviews</h2>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <div class="border p-4 rounded-lg text-center">
-          <div class="text-yellow-500 mb-2">★★★★★</div>
-          <p class="text-gray-600">"Amazing service! Our home feels so much fresher."</p>
-          <p class="text-sm font-semibold mt-2">- Sarah M.</p>
+      return (
+        <div className="border p-4 rounded-lg text-center">
+          <img src={image} alt={name} className="w-full h-48 object-cover rounded mb-4" />
+          <h3 className="text-lg font-semibold">{name}</h3>
+          <p className="text-gray-600">${price}</p>
+          <p className="text-sm text-gray-500 mb-4">{description}</p>
+          <button
+            onClick={togglePayment}
+            className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-500"
+          >
+            {showPayment ? 'Cancel' : 'Add to Cart'}
+          </button>
+          {showPayment && (
+            <div className="mt-4 p-4 border rounded">
+              <h4 className="text-lg font-semibold mb-2">Payment Information</h4>
+              <input type="text" placeholder="Card Number" className="w-full p-2 mb-2 border rounded" />
+              <input type="text" placeholder="Cardholder Name" className="w-full p-2 mb-2 border rounded" />
+              <div className="flex space-x-2">
+                <input type="text" placeholder="MM/YY" className="w-1/2 p-2 mb-2 border rounded" />
+                <input type="text" placeholder="CVC" className="w-1/2 p-2 mb-2 border rounded" />
+              </div>
+              <button className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-500">
+                Submit Payment
+              </button>
+            </div>
+          )}
         </div>
-        <div class="border p-4 rounded-lg text-center">
-          <div class="text-yellow-500 mb-2">★★★★★</div>
-          <p class="text-gray-600">"Professional team and excellent results."</p>
-          <p class="text-sm font-semibold mt-2">- John D.</p>
-        </div>
-        <div class="border p-4 rounded-lg text-center">
-          <div class="text-yellow-500 mb-2">★★★★★</div>
-          <p class="text-gray-600">"The air quality testing was a game-changer."</p>
-          <p class="text-sm font-semibold mt-2">- Emily R.</p>
-        </div>
-      </div>
-    </div>
-  </section>
+      );
+    }
 
-  <!-- Contact Section -->
-  <section id="contact" class="py-16">
-    <div class="container mx-auto px-6">
-      <h2 class="text-3xl font-bold text-center mb-8">Reach Out to Us</h2>
-      <div class="max-w-lg mx-auto">
-        <input type="text" placeholder="Name" class="w-full p-2 border rounded mb-4">
-        <input type="email" placeholder="Email" class="w-full p-2 border rounded mb-4">
-        <textarea placeholder="Message" class="w-full p-2 border rounded h-32 mb-4"></textarea>
-        <button class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-500 w-full">Send Message</button>
-      </div>
-      <div class="text-center mt-8">
-        <p class="text-lg text-gray-600"><strong>Phone:</strong> +1-213-876-3486</p>
-        <p class="text-lg text-gray-600"><strong>Address:</strong> 300 North Beaudry Ave Apt 7062, Los Angeles, CA 90012</p>
-        <p class="text-lg text-blue-600 font-semibold mt-4">Get 20% off your first service!</p>
-      </div>
-    </div>
-  </section>
+    // Main App Component
+    function App() {
+      const [policy, setPolicy] = useState({ type: '', isOpen: false });
 
-  <!-- Footer -->
-  <footer class="bg-gray-800 text-white py-6">
-    <div class="container mx-auto px-6 text-center">
-      <a href="#" class="hover:text-gray-200 mx-2">Privacy Policy</a>
-      <a href="#" class="hover:text-gray-200 mx-2">Return Policy</a>
-      <a href="#" class="hover:text-gray-200 mx-2">Terms and Conditions</a>
-    </div>
-  </footer>
+      const openPolicy = (type) => {
+        console.log('Opening policy modal:', type);
+        setPolicy({ type, isOpen: true });
+      };
+      const closePolicy = () => {
+        console.log('Closing policy modal');
+        setPolicy({ type: '', isOpen: false });
+      };
+
+      return (
+        <div className="min-h-screen">
+          <Header />
+          <main>
+            {/* Home Section */}
+            <section id="home" className="min-h-screen bg-gray-100 flex items-center">
+              <div className="container mx-auto px-6 flex flex-col md:flex-row items-center">
+                <div className="md:w-1/2">
+                  <h1 className="text-4xl font-bold mb-4">Air Duct Cleaning and Indoor Air Quality Solutions</h1>
+                  <p className="text-xl text-gray-600 mb-6">Breathe Fresh, Live Healthy!</p>
+                </div>
+                <div className="md:w-1/2">
+                  <img src="https://via.placeholder.com/500x300?text=Air+Duct+Cleaning" alt="Air Duct Cleaning" className="w-full rounded" />
+                </div>
+              </div>
+            </section>
+
+            {/* About Section */}
+            <section id="about" className="py-16">
+              <div className="container mx-auto px-6">
+                <h2 className="text-3xl font-bold text-center mb-8">About Us</h2>
+                <p className="text-lg text-gray-600 text-center">
+                  We have proudly served over <span className="font-semibold">1,000 customers</span> in the past <span className="font-semibold">3 years</span>, providing top-notch air duct cleaning and indoor air quality solutions to ensure a healthier living environment.
+                </p>
+              </div>
+            </section>
+
+            {/* Services Section */}
+            <section id="services" className="py-16 bg-gray-100">
+              <div className="container mx-auto px-6">
+                <h2 className="text-3xl font-bold text-center mb-8">Our Services</h2>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                  <div className="text-center">
+                    <img src="https://via.placeholder.com/300x200?text=Air+Duct+Cleaning" alt="Air Duct Cleaning" className="w-full h-48 object-cover rounded mb-4" />
+                    <h3 className="text-xl font-semibold">Air Duct Cleaning</h3>
+                    <p className="text-gray-600">Our professional air duct cleaning service removes dust, debris, and allergens from your HVAC system, improving air quality and system efficiency. We use advanced equipment to ensure a thorough clean, leaving your home fresher and healthier.</p>
+                  </div>
+                  <div className="text-center">
+                    <img src="https://via.placeholder.com/300x200?text=HVAC+Maintenance" alt="HVAC Maintenance" className="w-full h-48 object-cover rounded mb-4" />
+                    <h3 className="text-xl font-semibold">HVAC Maintenance</h3>
+                    <p className="text-gray-600">Keep your HVAC system in top condition with our comprehensive maintenance services. We inspect, clean, and tune your system to enhance performance, reduce energy costs, and extend its lifespan.</p>
+                  </div>
+                  <div className="text-center">
+                    <img src="https://via.placeholder.com/300x200?text=Air+Quality+Testing" alt="Air Quality Testing" className="w-full h-48 object-cover rounded mb-4" />
+                    <h3 className="text-xl font-semibold">Air Quality Testing</h3>
+                    <p className="text-gray-600">Our air quality testing service identifies pollutants, allergens, and other contaminants in your indoor environment. We provide detailed reports and recommendations to improve your home’s air quality for a healthier living space.</p>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            {/* Store Section */}
+            <section id="store" className="py-16">
+              <div className="container mx-auto px-6">
+                <h2 className="text-3xl font-bold text-center mb-8">Our Store</h2>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                  <StoreItem
+                    name="Air Purifier"
+                    price="99.99"
+                    description="This high-efficiency air purifier features a HEPA filter to capture 99.97% of airborne particles, including dust, pollen, and pet dander. Ideal for homes up to 500 sq ft, it ensures cleaner air and a healthier living environment."
+                    image="https://via.placeholder.com/300x200?text=Air+Purifier"
+                  />
+                  <StoreItem
+                    name="HEPA Filter"
+                    price="29.99"
+                    description="Our replacement HEPA filter is designed for compatibility with most standard air purifiers. It traps fine particles and allergens, ensuring your purifier continues to deliver clean air for up to 6 months."
+                    image="https://via.placeholder.com/300x200?text=HEPA+Filter"
+                  />
+                  <StoreItem
+                    name="Vent Cleaning Kit"
+                    price="49.99"
+                    description="This DIY vent cleaning kit includes brushes, rods, and a vacuum attachment for easy at-home maintenance of your air ducts. Keep your vents free of dust and debris to maintain optimal air quality."
+                    image="https://via.placeholder.com/300x200?text=Vent+Cleaning+Kit"
+                  />
+                  <StoreItem
+                    name="UV Air Sanitizer"
+                    price="149.99"
+                    description="This UV air sanitizer uses ultraviolet light to eliminate bacteria, viruses, and mold spores in your HVAC system. Easy to install, it provides an extra layer of protection for your indoor air quality."
+                    image="https://via.placeholder.com/300x200?text=UV+Air+Sanitizer"
+                  />
+                  <StoreItem
+                    name="Dehumidifier"
+                    price="79.99"
+                    description="Our compact dehumidifier removes excess moisture from the air, preventing mold growth and improving comfort. Perfect for basements or humid climates, it covers up to 300 sq ft."
+                    image="https://via.placeholder.com/300x200?text=Dehumidifier"
+                  />
+                  <StoreItem
+                    name="Air Quality Monitor"
+                    price="59.99"
+                    description="Monitor your indoor air quality with this easy-to-use device. It measures levels of dust, VOCs, and humidity, providing real-time data to help you maintain a healthy home environment."
+                    image="https://via.placeholder.com/300x200?text=Air+Quality+Monitor"
+                  />
+                </div>
+              </div>
+            </section>
+
+            {/* Reviews Section */}
+            <section id="reviews" className="py-16 bg-gray-100">
+              <div className="container mx-auto px-6">
+                <h2 className="text-3xl font-bold text-center mb-8">Customer Reviews</h2>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                  <div className="border p-4 rounded-lg text-center">
+                    <div className="text-yellow-500 mb-2">★★★★★</div>
+                    <p className="text-gray-600">"Amazing service! Our home feels so much fresher after the air duct cleaning."</p>
+                    <p className="text-sm font-semibold mt-2">- Sarah M.</p>
+                  </div>
+                  <div className="border p-4 rounded-lg text-center">
+                    <div className="text-yellow-500 mb-2">★★★★★</div>
+                    <p className="text-gray-600">"Professional team and excellent results. Highly recommend!"</p>
+                    <p className="text-sm font-semibold mt-2">- John D.</p>
+                  </div>
+                  <div className="border p-4 rounded-lg text-center">
+                    <div className="text-yellow-500 mb-2">★★★★★</div>
+                    <p className="text-gray-600">"The air quality testing helped us identify issues we didn't know we had."</p>
+                    <p className="text-sm font-semibold mt-2">- Emily R.</p>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            {/* Contact Section */}
+            <section id="contact" className="py-16">
+              <div className="container mx-auto px-6">
+                <h2 className="text-3xl font-bold text-center mb-8">Reach Out to Us</h2>
+                <div className="max-w-lg mx-auto">
+                  <div className="mb-4">
+                    <input type="text" placeholder="Name" className="w-full p-2 border rounded" />
+                  </div>
+                  <div className="mb-4">
+                    <input type="email" placeholder="Email" className="w-full p-2 border rounded" />
+                  </div>
+                  <div className="mb-4">
+                    <textarea placeholder="Message" className="w-full p-2 border rounded h-32"></textarea>
+                  </div>
+                  <button className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-500 w-full">
+                    Send Message
+                  </button>
+                </div>
+                <div className="text-center mt-8">
+                  <p className="text-lg text-gray-600"><strong>Phone:</strong> +1-213-876-3486</p>
+                  <p className="text-lg text-gray-600"><strong>Address:</strong> 300 North Beaudry Ave Apt 7062, Los Angeles, CA 90012</p>
+                  <p className="text-lg text-blue-600 font-semibold mt-4">Get 20% off your first service!</p>
+                </div>
+              </div>
+            </section>
+          </main>
+
+          {/* Footer with Policy Links */}
+          <footer className="bg-gray-800 text-white py-6">
+            <div className="container mx-auto px-6 text-center">
+              <div className="space-x-4">
+                <button onClick={() => openPolicy('privacy')} className="hover:text-gray-200">Privacy Policy</button>
+                <button onClick={() => openPolicy('return')} className="hover:text-gray-200">Return Policy</button>
+                <button onClick={() => openPolicy('terms')} className="hover:text-gray-200">Terms and Conditions</button>
+              </div>
+            </div>
+          </footer>
+
+          {/* Policy Modals */}
+          <Modal isOpen={policy.type === 'privacy' && policy.isOpen} onClose={closePolicy} title="Privacy Policy">
+            <p className="text-gray-600">Your privacy is important to us. We collect personal information such as your name, email, and address only to process orders and provide services. We do not share your data with third parties without your consent, except as required by law. Our website uses secure encryption to protect your information.</p>
+          </Modal>
+          <Modal isOpen={policy.type === 'return' && policy.isOpen} onClose={closePolicy} title="Return Policy">
+            <p className="text-gray-600">We offer a 30-day return policy for unused products in their original packaging. To initiate a return, contact us at +1-213-876-3486. Returned items must be in new condition, and customers are responsible for return shipping costs unless the item is defective.</p>
+          </Modal>
+          <Modal isOpen={policy.type === 'terms' && policy.isOpen} onClose={closePolicy} title="Terms and Conditions">
+            <p className="text-gray-600">By using our services or purchasing products, you agree to our terms. Services are provided as-is, and we are not liable for damages arising from their use. All purchases are final except as outlined in our return policy. We reserve the right to update these terms at any time.</p>
+          </Modal>
+        </div>
+      );
+    }
+
+    // Render the App
+    ReactDOM.render(<App />, document.getElementById('root'));
+  </script>
 </body>
 </html>
